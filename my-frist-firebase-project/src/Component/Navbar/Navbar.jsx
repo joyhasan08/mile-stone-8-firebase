@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 
-const Navbar = props => {
+const Navbar = () => {
     return (
         <div>
             <div className="navbar bg-primary text-primary-content rounded-lg justify-between">
