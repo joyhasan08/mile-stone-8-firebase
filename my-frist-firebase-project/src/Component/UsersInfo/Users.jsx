@@ -1,6 +1,5 @@
-import React from 'react';
-import { GoogleAuthProvider, getAuth, signOut } from "firebase/auth";
-import PropTypes from 'prop-types';
+
+import { getAuth, signOut } from "firebase/auth";
 import { app } from '../../helper/Firebase.init';
 import { Link } from 'react-router-dom';
 
