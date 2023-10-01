@@ -2,21 +2,40 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../helper/Firebase.init";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 const RegisterPage = () => {
+    const nextPage = useNavigate();
     const [loggedIn, setLoggedIn] = useState({})
     const [errorMsg, setErrorMsg] = useState('')
-    const handleOnSubmit = (e) => {
+
+    const handleOnSubmit = async (e) => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.pass.value;
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+        console.log(email, password);
+        if (password.length < 6) {
+            console.log('password should be 6 letter');
+            return
+        }
+        else if (!passwordRegex.test(password)) {
+            console.log('wrong password');
+            toast(`wrong password`)
+            return
+        }
         console.log(email, password);
         createUserWithEmailAndPassword(auth, email, password)
-            .then((res) => {
+            .then(async (res) => {
                 console.log(res);
                 console.log(res.operationType);
                 setLoggedIn(res)
                 toast("Registration successful");
+                await new Promise(() => {
+                    setTimeout(() => {
+                        nextPage("/")
+                    }, 3000);
+                })
             })
             .catch((error) => {
                 console.log(error);
@@ -34,6 +53,7 @@ const RegisterPage = () => {
                         <input className="input" name="pass" type="password" placeholder="Enter your password" />
                         <input className="btn w-fit mx-auto" type="submit" />
                     </form>
+                    <ToastContainer></ToastContainer>
                 </div>
                 <div>
                     {
