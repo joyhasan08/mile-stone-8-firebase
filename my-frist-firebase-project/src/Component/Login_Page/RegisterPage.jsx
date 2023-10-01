@@ -1,11 +1,28 @@
-
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../helper/Firebase.init";
+import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const RegisterPage = () => {
+    const [loggedIn, setLoggedIn] = useState({})
+    const [errorMsg, setErrorMsg] = useState('')
     const handleOnSubmit = (e) => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.pass.value;
         console.log(email, password);
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((res) => {
+                console.log(res);
+                console.log(res.operationType);
+                setLoggedIn(res)
+                toast("Registration successful");
+            })
+            .catch((error) => {
+                console.log(error);
+                setErrorMsg(error.code)
+                toast(errorMsg)
+            })
     }
     return (
         <>
@@ -17,6 +34,14 @@ const RegisterPage = () => {
                         <input className="input" name="pass" type="password" placeholder="Enter your password" />
                         <input className="btn w-fit mx-auto" type="submit" />
                     </form>
+                </div>
+                <div>
+                    {
+                        loggedIn && <ToastContainer></ToastContainer>
+                    }
+                    {
+                        errorMsg && <ToastContainer></ToastContainer>
+                    }
                 </div>
             </div>
         </>
