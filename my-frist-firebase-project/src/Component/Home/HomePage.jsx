@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+
+import { useEffect } from 'react';
+import { useState } from 'react';
+
 import Navbar from '../Navbar/Navbar';
 import Users from '../UsersInfo/Users';
 
-const HomePage = props => {
+const HomePage = () => {
     const [loggedUser, setLoggedUser] = useState({})
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -13,6 +15,7 @@ const HomePage = props => {
     return (
         <div>
             <Navbar></Navbar>
+
             <Users data={loggedUser} ></Users>
 
         </div>
