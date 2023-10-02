@@ -73,14 +73,18 @@ const RegisterPage = () => {
                         </div>
                         <div >
                             <TermsAndconditn setTerms={setTerms} ></TermsAndconditn>
+                            <p className="font-semibold " ><Link to={"/"} >Already Have an <span className="text-blue-500" >Account</span> ?</Link></p>
                         </div>
                         <input
                             className="btn w-fit mx-auto"
                             type="submit" />
                     </form>
+                    <div>
 
+                    </div>
                     <ToastContainer></ToastContainer>
                 </div>
+
                 <div>
                     {
                         loggedIn && <ToastContainer></ToastContainer>

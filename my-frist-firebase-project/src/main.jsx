@@ -9,6 +9,7 @@ import {
 import LoginPage from './Component/Login_Page/LoginPage.jsx';
 import HomePage from './Component/Home/HomePage.jsx';
 import RegisterPage from './Component/Login_Page/RegisterPage.jsx';
+import ForgotPassword from './Component/Login_Page/ForgotPassword.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/reg",
         element: <RegisterPage></RegisterPage>
+      },
+      {
+        path: "/forgot",
+        element: <ForgotPassword></ForgotPassword>
       }
 
     ]

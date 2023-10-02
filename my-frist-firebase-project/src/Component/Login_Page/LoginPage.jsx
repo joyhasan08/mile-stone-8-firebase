@@ -20,10 +20,10 @@ const LoginPage = () => {
         console.log(`1`);
         signInWithEmailAndPassword(auth, email, password)
             .then(res => {
-                console.log(res.user)
+                console.log('login successfully', res.user)
                 redirect("/home")
             })
-            .catch(error => console.error(error))
+            .catch(error => console.error("error", error.message))
     }
 
     const handleGoogleLogin = () => {
@@ -62,6 +62,7 @@ const LoginPage = () => {
                                 <h2 className="text-5xl font-semibold text-blue-900  ">Login</h2>
                                 <input onChange={handelOnChangeEmail} className="input w-full text-black" type="email" placeholder="Your Email here" />
                                 <input onChange={handelOnChangePassword} className="input w-full" type="password" placeholder="Password" />
+                                <Link to={"/forgot"} ><p className='text-blue-500'>Frogot Password?</p ></Link>
                                 <TermsAndconditn></TermsAndconditn>
                             </form>
                             <div className="card-actions justify-end py-5 gap-5 ">
@@ -79,7 +80,7 @@ const LoginPage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
         </>
 
